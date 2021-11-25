@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="front.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="front">
+    <Grid
+        RowDefinitions="100, *">
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <Button
+                Content="Sign in"
+                Command="{Binding GoToAuthorizationCommand}" />
+            <Button
+                Content="Sign up"
+                Command="{Binding GoToRegistrationCommand}" />
+        </StackPanel>
+        <rxui:RoutedViewHost
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            Router="{Binding Router}">
+        </rxui:RoutedViewHost>
+    </Grid>
+
+</Window>
