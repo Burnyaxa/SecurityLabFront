@@ -4,5 +4,85 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="front.Views.RegistrationView">
-    <TextBlock Text="Reg" />
+    <Grid
+        RowDefinitions="Auto,Auto,Auto, Auto">
+        <TextBlock
+            Text="Sign up"/>
+        <TextBlock
+            Grid.Row="1"
+            Text="{Binding RegistrationStatus}"/>
+        <Grid
+            Grid.Row="2"
+            RowDefinitions="Auto, Auto"
+            IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Key" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Vale" />                    
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                VerticalAlignment="Center"
+                Text="Email:"/>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Width="250"
+                Text="{Binding CurrentUser.Email}"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="Password:"/>
+            <TextBox
+                x:Name="PasswordValidation"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Width="250"
+                PasswordChar="*"
+                Text="{Binding Password}"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="Confirm password:"/>
+            <TextBox
+                x:Name="ConfirmPasswordValidation"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Width="250"
+                PasswordChar="*"
+                Text="{Binding ConfirmPassword}"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="Phone:"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Text="{Binding CurrentUser.Phone}"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="Address:"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Text="{Binding CurrentUser.Address}"/>
+        </Grid>
+        <Button 
+            Grid.Row="3"
+            Content="Submit"
+            Command="{Binding RegisterCommand}"/>
+    </Grid>
 </UserControl>

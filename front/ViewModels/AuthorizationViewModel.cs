@@ -39,7 +39,7 @@ namespace front.ViewModels
             }
             catch (Exception e)
             {
-                SignInMessage = "Oops something went wrong. Check your credentials and try again.";
+                SignInMessage = e.Message;
             }
         }
 
