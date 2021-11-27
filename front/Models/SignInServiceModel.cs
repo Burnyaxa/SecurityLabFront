@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using front.Entities;
 using front.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace front.Models
@@ -17,7 +18,8 @@ namespace front.Models
             var url = string.Format(Paths.Root, SignInEndpoint);
             var client = new RestClient();
             var request = new RestRequest(url, Method.POST, DataFormat.Json);
-            request.AddJsonBody(credentials);
+            request.AddParameter("application/json", JsonConvert.SerializeObject(credentials), ParameterType.RequestBody);
+            
             var response = await client.ExecuteAsync(request);
            
             if (!response.IsSuccessful)
@@ -28,7 +30,9 @@ namespace front.Models
                 }
                 throw new AuthenticationException("Bad credentials.");
             }
-            return JsonConvert.DeserializeObject<User>(response.Content);
+
+            var userObject = JObject.Parse(response.Content)["user"];
+            return userObject.ToObject<User>();
         }
     }
 }

@@ -12,7 +12,13 @@ namespace front.ViewModels
     {
         private readonly SignInServiceModel _model = new SignInServiceModel();
         [Reactive]
-        public Credentials CurrentCredentials { get; set; }
+        public string Password { get; set; }
+        [Reactive]
+        public string Email { get; set; }
+        [Reactive]
+        public string Address { get; set; }
+        [Reactive]
+        public string Phone { get; set; }
         [Reactive]
         public User CurrentUser { get; set; }
         [Reactive]
@@ -26,7 +32,8 @@ namespace front.ViewModels
 
         public AuthorizationViewModel(IScreen hostScreen)
         {
-            CurrentCredentials = new Credentials();
+            Password = string.Empty;
+            Email = string.Empty;
             CurrentUser = new User();
             SignInMessage = string.Empty;
             HostScreen = hostScreen;
@@ -38,8 +45,11 @@ namespace front.ViewModels
         {
             try
             {
-                CurrentUser = await _model.SignIn(CurrentCredentials);
+                CurrentUser = await _model.SignIn(new Credentials(){Email = Email, Password = Password});
+                Address = CurrentUser.Address;
+                Phone = CurrentUser.Phone;
                 SignInMessage = "Yay! Here is your data:";
+                IsAuthorized = true;
             }
             catch (Exception e)
             {
@@ -50,6 +60,10 @@ namespace front.ViewModels
         public Task LogOut()
         {
             CurrentUser = new User();
+            Email = string.Empty;
+            Password = string.Empty;
+            Address = string.Empty;
+            Phone = string.Empty;
             SignInMessage = string.Empty;
             IsAuthorized = false;
             return Task.CompletedTask;
