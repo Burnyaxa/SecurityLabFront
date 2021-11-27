@@ -1,88 +1,125 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="front.Views.RegistrationView">
+﻿<rxui:ReactiveUserControl
+    x:TypeArguments="vm:RegistrationViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:vm="clr-namespace:front.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:Class="front.Views.RegistrationView">
     <Grid
-        RowDefinitions="Auto,Auto,Auto, Auto">
+        HorizontalAlignment="Stretch"
+        RowDefinitions="Auto,Auto,*,Auto"
+        ColumnDefinitions="*">
         <TextBlock
-            Text="Sign up"/>
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Sign up" />
         <TextBlock
             Grid.Row="1"
-            Text="{Binding RegistrationStatus}"/>
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding RegistrationStatus}" />
         <Grid
             Grid.Row="2"
-            RowDefinitions="Auto, Auto"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            RowDefinitions="Auto, Auto, Auto, Auto,Auto"
             IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Key" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="Vale" />                    
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <TextBlock
                 VerticalAlignment="Center"
-                Text="Email:"/>
+                Text="Email:" />
             <TextBox
                 Grid.Row="0"
                 Grid.Column="1"
-                VerticalAlignment="Center"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Left"
                 Margin="5,0,0,5"
                 Width="250"
-                Text="{Binding CurrentUser.Email}"/>
+                Text="{Binding Email}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                Foreground="Red"
+                TextWrapping="WrapWithOverflow"
+                x:Name="EmailValidation"
+                VerticalAlignment="Center" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="Password:"/>
+                Text="Password:" />
             <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="Password"
+                VerticalAlignment="Center"
+                Margin="5,0,0,5"
+                Width="250"
+                PasswordChar="*" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="2"
+                Foreground="Red"
+                TextWrapping="WrapWithOverflow"
                 x:Name="PasswordValidation"
-                Grid.Row="1"
-                Grid.Column="1"
-                VerticalAlignment="Center"
-                Margin="5,0,0,5"
-                Width="250"
-                PasswordChar="*"
-                Text="{Binding Password}"/>
+                VerticalAlignment="Center" />
             <TextBlock
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="Confirm password:"/>
+                Text="Confirm password:" />
             <TextBox
-                x:Name="ConfirmPasswordValidation"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="1"
+                x:Name="ConfirmPassword"
                 VerticalAlignment="Center"
                 Margin="5,0,0,5"
                 Width="250"
-                PasswordChar="*"
-                Text="{Binding ConfirmPassword}"/>
+                PasswordChar="*" />
             <TextBlock
-                Grid.Row="1"
+                Grid.Row="2"
+                Grid.Column="2"
+                Foreground="Red"
+                x:Name="ConfirmPasswordValidation"
+                VerticalAlignment="Center" />
+            <TextBlock
+                Grid.Row="3"
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="Phone:"/>
-            <TextBlock
-                Grid.Row="1"
+                Text="Phone:" />
+            <TextBox
+                Grid.Row="3"
                 Grid.Column="1"
+                Width="250"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Margin="5,0,0,5"
-                Text="{Binding CurrentUser.Phone}"/>
+                Text="{Binding Phone}" />
             <TextBlock
-                Grid.Row="1"
+                Grid.Row="4"
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="Address:"/>
-            <TextBlock
-                Grid.Row="1"
+                Text="Address:" />
+            <TextBox
+                Grid.Row="4"
                 Grid.Column="1"
+                Width="250"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Margin="5,0,0,5"
-                Text="{Binding CurrentUser.Address}"/>
+                Text="{Binding Address}" />
         </Grid>
-        <Button 
+        <Button
             Grid.Row="3"
+            HorizontalAlignment="Center"
             Content="Submit"
-            Command="{Binding RegisterCommand}"/>
+            Command="{Binding RegisterCommand}" />
     </Grid>
-</UserControl>
+</rxui:ReactiveUserControl>

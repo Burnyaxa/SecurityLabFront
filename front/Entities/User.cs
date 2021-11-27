@@ -1,17 +1,31 @@
 ﻿using System;
-using PropertyChanged;
+using Newtonsoft.Json;
+using ReactiveUI.Fody.Helpers;
 
 namespace front.Entities
 {
-    [AddINotifyPropertyChangedInterface]
     public class User
     {
+        [Reactive]
+        [JsonProperty("id")]
         public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
+        [Reactive]
+        [JsonProperty("email")]
+        public string Email { get; set; } = string.Empty;
+        [Reactive]
+        [JsonProperty("password")]
+        public string Password { get; set; } = string.Empty;
+        [Reactive]
+        [JsonProperty("address")]
+        public string Address { get; set; } = string.Empty;
+        [Reactive]
+        [JsonProperty("phone")]
+        public string Phone { get; set; } = string.Empty;
+        [Reactive]
+        [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
+        [Reactive]
+        [JsonProperty("lastAuthDate")]
         public DateTime LastAuthDate { get; set; }
     }
 }

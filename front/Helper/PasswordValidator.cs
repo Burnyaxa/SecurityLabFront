@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace front.Helper
 {
@@ -7,11 +6,11 @@ namespace front.Helper
     {
         public bool Validate(string password)
         {
-            return IsMatchingLength(password) &&
-                   IsHavingNumber(password) &&
-                   IsHavingSpecial(password) &&
-                   IsHavingLowercaseLetter(password) &&
-                   IsHavingUppercaseLetter(password);
+            return  IsMatchingLength(password) &&
+                    IsHavingNumber(password) &&
+                    IsHavingSpecial(password) &&
+                    IsHavingLowercaseLetter(password) &&
+                    IsHavingUppercaseLetter(password);
         }
 
         private bool IsMatchingLength(string password)
@@ -31,12 +30,12 @@ namespace front.Helper
 
         private bool IsHavingNumber(string password)
         {
-            return password.Any(char.IsNumber);
+            return password.Any(char.IsDigit);
         }
 
         private bool IsHavingSpecial(string password)
         {
-            return !password.Any(char.IsLetterOrDigit);
+            return password.Any(x => !char.IsLetterOrDigit(x));
         }
     }
 }

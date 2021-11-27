@@ -3,21 +3,25 @@ using System.Reactive;
 using System.Threading.Tasks;
 using front.Entities;
 using front.Models;
-using PropertyChanged;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace front.ViewModels
 {
-    [AddINotifyPropertyChangedInterface]
     public class AuthorizationViewModel : ReactiveObject, IRoutableViewModel
     {
         private readonly SignInServiceModel _model = new SignInServiceModel();
-        
+        [Reactive]
         public Credentials CurrentCredentials { get; set; }
+        [Reactive]
         public User CurrentUser { get; set; }
+        [Reactive]
         public string SignInMessage { get; set; }
+        [Reactive]
         public bool IsAuthorized { get; set; }
+        [Reactive]
         public ReactiveCommand<Unit, Unit> SignInCommand { get; set; }
+        [Reactive]
         public ReactiveCommand<Unit, Unit> LogOutCommand { get; set; }
 
         public AuthorizationViewModel(IScreen hostScreen)

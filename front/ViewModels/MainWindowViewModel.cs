@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Reactive;
-using PropertyChanged;
 using ReactiveUI;
 
 namespace front.ViewModels
 {
-    [AddINotifyPropertyChangedInterface]
     public class MainWindowViewModel : ReactiveObject, IScreen
     {
         public string Greeting => "Welcome to Avalonia!";

@@ -1,15 +1,11 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using front.ViewModels;
-using PropertyChanged;
 using ReactiveUI;
 
 namespace front.Views
 {
-    [DoNotNotify]
-    public class AuthorizationView : ReactiveUserControl<AuthorizationViewModel>
+    public partial class AuthorizationView : ReactiveUserControl<AuthorizationViewModel>
     {
         public AuthorizationView()
         {

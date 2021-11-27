@@ -3,11 +3,9 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using front.ViewModels;
 using front.Views;
-using PropertyChanged;
 
 namespace front
 {
-    [DoNotNotify]
     public class App : Application
     {
         public override void Initialize()

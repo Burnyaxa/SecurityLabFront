@@ -2,13 +2,11 @@ using Avalonia;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using front.ViewModels;
-using PropertyChanged;
 using ReactiveUI;
 
 namespace front.Views
 {
-    [DoNotNotify]
-    public class MainWindow : ReactiveWindow<MainWindowViewModel>
+    public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
         public MainWindow()
         {
